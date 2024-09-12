@@ -1,0 +1,101 @@
+{% extends 'navbar1.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url('https://infinitywallet.io/_next/image?url=%2Fassets%2Fbackgrounds%2Fhome-page.jpg&w=3840&q=100'); /* Replace with your image URL */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 160vh;
+        margin: 0;
+        padding: 0;
+    }
+    .card-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background to the card */
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card p-3">
+                <h3 class="text-primary text-center">Teacher Signup</h3>
+                <div class="container">
+                    {% for message in messages %}
+                    <h5>
+                        <div class="alert alert-danger mt-5" style="width:100%">
+                            {{ message }}
+                        </div>
+                    </h5>
+                     {% endfor %}
+                </div>
+                <form method='post' action="{% url 'teacher_registerdb' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" class='form-control' placeholder="Enter First Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" class='form-control' placeholder="Enter Last Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class='form-control' placeholder="Enter Username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" class='form-control' placeholder="Enter Age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class='form-control' placeholder="Enter Email Address" required>
+                    </div>
+                    <div class="form-group">                       
+                        <input type="hidden" name="text" value="2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_number">Contact Number</label>
+                        <input type="tel" id="contact_number" name="contact_number" class='form-control' placeholder="Enter Contact Number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sel">Course</label>
+                        <select id="sel" name="sel" class='form-control' required>
+                            {% for c in course %}
+                            <option value="{{ c.id }}">{{ c.course_name }}</option>                          
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">Upload Your Photo</label>
+                        <input type="file" id="photo" name="img" class='form-control-file' accept="image/*" required>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-primary rounded-pill w-100">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "student_nav.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+    <h3 class="mb-4">Profile</h3>
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h2 class="mb-4">
+                <img src="{{ stud.image.url }}" class="img-fluid rounded-circle" style="height:150px; width:150px;">
+            </h2>
+            <p><strong>Name:</strong> {{ stud.user.first_name }}</p>
+            <p><strong>Course:</strong> {{ stud.course.course_name }}</p>
+            <p><strong>Teacher:</strong> {{ stud.teacher.first_name }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

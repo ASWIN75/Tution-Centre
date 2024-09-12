@@ -1,0 +1,30 @@
+{% extends "teacher_nav.html" %}
+
+
+{% block content %}
+
+<div class="content">
+
+    <h3 class="text-center">Syllabus</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Course Name</th>
+                    <th>Syllabus</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in sy %}
+                <tr>
+                    
+                    <td>{{s.course_name}}</td>
+                    <td><a href="{{s.syllabus.url}}">Syllabus</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    {% endblock %}

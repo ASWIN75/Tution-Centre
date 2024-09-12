@@ -1,0 +1,56 @@
+{% extends "admin_nav.html" %}
+
+
+{% block content %}
+
+<div class="content">
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </div>
+{% endif %}
+    <h3 class="text-center">Show Student Details</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User Type</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for u in user %}
+                <tr>
+                    <td>
+                        {% if u.user_type == "2" %}
+                            Teacher
+                        {% else %}
+                            Student
+                        {% endif %}
+                    </td>
+                    <td>{{ u.first_name  }} {{u.last_name}}</td>
+                    <td>{{ u.email }}</td>
+                    <td>
+                        {% if u.status == 0 %}
+                            <a class="btn btn-success" href={% url 'approve' u.id %}>approve</a>
+                            <a class="btn btn-danger" href={% url 'disapprove'  u.id %}>disapprove</a>
+                        {% endif %}
+                        {% if u.status == 1 %}
+                            <div class="btn btn-success">Approved </div>
+                        {% endif %}
+                        {% if u.status == 2 %}
+                        <div class="btn btn-danger ">Dispproved </div>
+                    {% endif %}
+                    </td>
+                    
+                </tr> 
+             {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

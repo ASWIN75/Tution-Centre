@@ -1,0 +1,32 @@
+{% extends "teacher_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">Task Submitted</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Task Name</th>
+                    <th>File</th>
+                    <th>Description</th>
+                    <th>Submitted students</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in ta %}
+                <tr>
+                    <td>{{t.task}}</td>
+                    <td><a href="{{t.File.url}}">File</a></td>
+                    <td>{{t.Description}}</td>
+                    <td>{{t.student.first_name}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

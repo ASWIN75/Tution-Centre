@@ -1,0 +1,55 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">Assign Teacher</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Teacher</th>
+                    <th>Current Teacher</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in student %}
+                <tr>
+                    <td>{{s.user.first_name}}</td>
+                    <td>{{s.course.course_name}}</td>
+
+                    <td>
+                        <select name="se" id="teacher_select_{{ s.user.id }}">
+                            {% for t in teacher %}
+                              {% if t.course.id == s.course.id %}
+                              <option value="{{ t.user.id }}">{{ t.user.first_name }}</option>
+                              {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+
+                    <td>{{ s.teacher.username }}</td>
+
+                    <td><button type="button" onclick="assignTeacher('{{s.user.id}}')" class="button-4">Assign</button></td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+             <script>
+                function assignTeacher(studentId){
+                    console.log(studentId)
+                    teacherId=document.getElementById('teacher_select_' + studentId).value;
+                    console.log(teacherId)
+                    var url = `/assign_teacher/${studentId}/${teacherId}/`
+                    window.location.href = url;
+
+                }
+            </script>
+</div>
+{% endblock %}

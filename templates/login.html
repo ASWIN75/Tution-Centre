@@ -1,0 +1,76 @@
+{% extends 'navbar1.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url('https://infinitywallet.io/_next/image?url=%2Fassets%2Fbackgrounds%2Fhome-page.jpg&w=3840&q=100'); /* Replace with your image URL */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    .card-container {
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background to the card */
+        width: 100%;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row card-container">
+        <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
+            <div class="card p-3">
+                <div class="container">
+                    {% for message in messages %}
+                    <h5>
+                        <div class="alert alert-danger mt-5" style="width:100%">
+                            {{ message }}
+                        </div>
+                    </h5>
+                     {% endfor %}
+                </div>
+                <form method='post' action="{% url 'login1' %}">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h3 class="text-primary">Log In</h3>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-outline-primary rounded-pill w-100">Log In</button><br>
+                            
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

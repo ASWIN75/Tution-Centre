@@ -1,0 +1,35 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">Students</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Image</th>
+                    <th>Phone Number</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in stu %}
+                <tr>
+                    <td>{{s.user.username}}</td>
+                    <td>{{s.user.email}}</td>
+                    <td>{{s.age}}</td>
+                    <td><img src="{{s.image.url}}" style="width: 100px; height: 100px;"></td>
+                    <td>{{s.number}}</td>
+                    <td>{{s.course.course_name}}</td>
+                    <td><a href="{% url 'delete_student' s.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

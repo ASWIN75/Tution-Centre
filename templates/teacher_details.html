@@ -1,0 +1,35 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">Teachers</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Image</th>
+                    <th>Phone Number</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tea %}
+                <tr>
+                    <td>{{t.user.username}}</td>
+                    <td>{{t.user.email}}</td>
+                    <td>{{t.age}}</td>
+                    <td><img src="{{t.image.url}}" style="width: 100px; height: 100px;"></td>
+                    <td>{{t.number}}</td>
+                    <td>{{t.course.course_name}}</td>
+                    <td><a href="{% url 'delete_teacher' t.user.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

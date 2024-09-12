@@ -1,0 +1,32 @@
+{% extends "admin_nav.html" %}
+
+
+{% block content %}
+
+<div class="content">
+
+    <h3 class="text-center">Courses</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Course Name</th>
+                    <th>Duration</th>
+                    <th>Fee</th>
+                    <th>Syllabus</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in co %}
+                <tr>
+                    <td>{{c.course_name}}</td>
+                    <td>{{c.course_duration}}</td>
+                    <td>{{c.fee}}</td>
+                    <td><a href="{{c.syllabus.url}}">Syllabus</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    {% endblock %}

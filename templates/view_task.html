@@ -1,0 +1,29 @@
+{% extends "teacher_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">View Task</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Task</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in ta %}
+                <tr>
+                    <td>{{t.task_name}}</td>
+                    <td>{{t.start_date}}</td>
+                    <td>{{t.end_date}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

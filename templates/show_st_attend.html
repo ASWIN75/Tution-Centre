@@ -1,0 +1,29 @@
+{% extends "student_nav.html" %}
+
+{% block content %}
+<div class="content">
+    <h3 class="text-center">Student Attendence</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in uss %}
+                <tr>
+                    <td>{{u.student_name.first_name}}</td>
+                    <td>{{u.date}}</td>
+                    <td>{{u.attendance}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
